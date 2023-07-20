@@ -408,9 +408,9 @@ EnvSetting ()
     sudo sed -i "s/#hdmi_mode=1/hdmi_mode=16/1" /boot/config.txt
     sudo sed -i "s/#hdmi_drive=2/hdmi_drive=2/1" /boot/config.txt
     sudo sed -i "s/#dtparam=i2c_arm=on/dtparam=i2c_arm=on/1" /boot/config.txt
-    sudo echo "dtoverlay=pwm-2chan,pin=12,func=4,pin2=13,func2=4" >> /boot/config.txt
-    sudo echo "dtoverlay=disable-bt" >> /boot/config.txt
-    sudo echo "dtoverlay=miniuart-bt" >> /boot/config.txt
+    sudo sh -c "echo 'dtoverlay=pwm-2chan,pin=12,func=4,pin2=13,func2=4' >> /boot/config.txt"
+    sudo sh -c "echo 'dtoverlay=disable-bt' >> /boot/config.txt"
+    sudo sh -c "echo 'dtoverlay=miniuart-bt' >> /boot/config.txt"
 
     # Recover /etc/dhcpcd.conf if .tmp exist
     if sudo cat /etc/dhcpcd.conf.tmp &> /dev/null
@@ -516,7 +516,7 @@ read selectNum
 if [ "$selectNum" == "1" ]
 then
     echo "Install Chassis module..."
-    pack_name="py_gps"
+    pack_name="py_chassis"
 elif [ "$selectNum" == "u" ]
 then
     echo "Updating module..."

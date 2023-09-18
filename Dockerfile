@@ -13,10 +13,13 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     python3-colcon-mixin \
     python3-rosdep \
     python3-vcstool \
+    nlohmann-json3-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # Script will automatically filled up the required packages under line 19
-RUN apt-get update && apt-get install --no-install-recommends -y \
+ADD requirement_apt.txt /
+RUN apt-get update
+RUN apt-get install --no-install-recommends -y $(cat requirement_apt.txt) | xargs
 
 
 ADD requirement_pip.txt /
@@ -42,6 +45,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 ADD ros_entrypoint.sh /
 RUN chmod a+x ros_entrypoint.sh
 RUN mkdir -p ros2_ws/src
+RUN mkdir -p ros2_ws/launch/qos
 COPY codePack/ /ros2_ws/src/
 WORKDIR /ros2_ws
 

@@ -10,7 +10,7 @@ PARSER_UPGRADE="FALSE" # Upgrade installer
 preserve_conf="FALSE" # Preserve current common.yaml and service.json file while installing
 pack_name="NONE"
 static_ip="NONE"
-interface="wlan0"
+interface="eth0"
 non_docker="FALSE"
 
 

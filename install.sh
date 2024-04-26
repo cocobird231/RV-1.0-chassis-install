@@ -517,7 +517,11 @@ to grab git controlled directory."
     fi
 
     # Update submodules
-    git submodule update --remote --recursive --force
+    git submodule update --init --remote --recursive --force
+    git --git-dir=codePack/.git checkout v1.2
+    git --git-dir=codePack/.git pull
+    git --git-dir=codePack/vehicle_interfaces/.git checkout v1.2
+    git --git-dir=codePack/vehicle_interfaces/.git pull
 }
 
 # Remove common.yaml, service.json, .txt, .tmp, .module* files and /etc/xdg/autostart/ros2_docker.desktop
